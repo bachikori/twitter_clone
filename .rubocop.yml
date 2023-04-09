@@ -21,6 +21,3 @@ Metrics/AbcSize:
 
 Rails/BulkChangeTable:
   Enabled: false
-
-Rails/NotNullColumn:
-  Enabled: false

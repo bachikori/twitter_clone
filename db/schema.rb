@@ -42,10 +42,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_082608) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname", null: false
+    t.string "nickname", default: "", null: false
     t.date "birthday"
     t.string "tel_number"
-    t.string "uid", null: false
+    t.string "uid", default: "", null: false
     t.string "provider", default: "", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
