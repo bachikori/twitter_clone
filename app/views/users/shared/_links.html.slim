@@ -1,0 +1,19 @@
+small.text-center.fw-bolder.mb-3.horizontal-border
+  |  または 
+- if devise_mapping.omniauthable? && controller_name != 'sessions'
+  - resource_class.omniauth_providers.each do |provider|
+    = button_to "#{OmniAuth::Utils.camelize(provider)}でサインアップ", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-dark w-100"
+    br
+- else
+  - resource_class.omniauth_providers.each do |provider|
+    = button_to "#{OmniAuth::Utils.camelize(provider)}でサインイン", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-dark w-100"
+    br
+- if controller_name != 'sessions'
+  = link_to "ログイン", new_session_path(resource_name)
+  br
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  = link_to "新規登録", new_registration_path(resource_name)
+  br
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  = link_to "パスワードを忘れた方はこちら", new_password_path(resource_name)
+  br

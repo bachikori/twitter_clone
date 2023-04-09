@@ -6,3 +6,21 @@ Style/Documentation:
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
+
+Metrics/BlockLength:
+  enabled: true
+  Max: 40
+
+Layout/LineLength:
+  Enabled: true
+  Max: 160
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 30
+
+Rails/BulkChangeTable:
+  Enabled: false
+
+Rails/NotNullColumn:
+  Enabled: false

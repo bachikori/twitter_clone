@@ -1,0 +1,20 @@
+.p-form__container {
+	max-width: 480px;
+}
+.tweet-container {
+	margin-top: 25vh;
+	margin-left: 25vw;
+}
+.horizontal-border {
+	display: flex;
+	align-items: center;
+}
+.horizontal-border::before {
+	margin-right: 15px;
+}
+.horizontal-border::before, .horizontal-border::after {
+	content: "";
+	flex-grow: 1;
+	height: 1px;
+	background-color: #ccc;
+}

@@ -1,0 +1,39 @@
+.d-flex
+  .w-25.vh-100.py-3.border-end.d-flex.justify-content-center.position-fixed
+    .flex-column
+      - if notice
+        p
+          = notice
+      - if alert
+        p
+          = alert
+      ul.nav.flex-column
+        li.nav-item.pb-5
+          = link_to root_path do
+            i.bi.bi-twitter.fs-2.text-info.nav-link
+        - if user_signed_in?
+          = link_to new_user_session_path, class: "nav-item" do
+            button.btn.btn-info.btn-wrapper[type="button"]
+              | ツイートする
+          = link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-item d-flex" do
+            i.bi.bi-person-dash-fill.fs-3.text-info.nav-link
+            .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+              | ログアウト
+        - else
+          = link_to new_user_session_path, class: "nav-item d-flex" do
+            i.bi.bi-person-fill.fs-3.text-info.nav-link
+            .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+              | ログイン
+          = link_to new_user_registration_path, class: "nav-item d-flex" do
+            i.bi.bi-person-plus-fill.fs-3.text-info.nav-link
+            .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+              | 新規登録
+      - if user_signed_in?
+        p
+          = current_user.nickname
+          | さん
+  .w-75
+    .w-75.border-bottom.h-25.position-fixed.top-0.end-0
+      h2.ms-4.mt-4
+        | ホーム
+    .tweet-container
