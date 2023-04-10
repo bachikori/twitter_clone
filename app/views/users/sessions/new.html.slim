@@ -1,5 +1,11 @@
 .card.mx-auto.my-5.p-form__container
   .p-5
+    - if notice
+      p
+        = notice
+    - if alert
+      p
+        = alert
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "text-center" }) do |f|
       h2.mb-5
         | ログイン
