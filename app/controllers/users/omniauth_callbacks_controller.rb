@@ -30,7 +30,11 @@ module Users
         set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?
       else
         session['devise.github_data'] = request.env['omniauth.auth']
-        redirect_to new_user_registration_url
+        if @user.invalid?
+          flash[:error] = @user.errors.full_messages
+          redirect_to new_user_session_path and return
+        end
+        redirect_to new_user_registration_path and return
       end
     end
 

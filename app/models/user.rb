@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable, omniauth_providers: [:github]
 
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
 
   def self.find_for_github_oauth(auth)
@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
       user.password = Devise.friendly_token[0, 20]
     end
+  rescue StandardError
+    User.new(nickname: auth.info.nickname, email: auth.info.email, password: Devise.friendly_token[0, 20], provider: auth.provider, uid: auth.uid)
   end
 
   def self.create_unique_string

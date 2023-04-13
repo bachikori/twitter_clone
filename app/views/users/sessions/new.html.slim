@@ -6,6 +6,10 @@
     - if alert
       p
         = alert
+    - if flash[:error]
+      - flash[:error].each do |e|
+        li 
+        = e
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "text-center" }) do |f|
       h2.mb-5
         | ログイン
