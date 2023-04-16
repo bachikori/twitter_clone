@@ -1,10 +1,14 @@
 name: "【Docker】Ruby on Rails CI"
 on:
+env:
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 jobs:
+env:
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
   run-htmlbeautifier:
     name: Run htmlbeautifier
     runs-on: ubuntu-latest
@@ -14,6 +18,8 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - name: run htmlbeautifier on docker-compose
+      env:
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: |
         docker-compose build
         docker-compose run --rm web bin/setup
