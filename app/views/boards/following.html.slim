@@ -5,9 +5,9 @@
         h2.ms-4.mt-1
           | ホーム
         .d-flex.justify-content-around.mt-auto.mb-0
-          = link_to root_path, class: "pb-2 border-bottom border-info border-4"
+          = link_to root_path, class: "pb-2"
            | おすすめ
-          = link_to boards_following_path, class: "pb-2" 
+          = link_to boards_following_path, class: "pb-2 border-bottom border-info border-4" 
             | フォロー中
     .tweet-container.w-100
       .d-flex.tweet-area.border-bottom
@@ -35,24 +35,10 @@
                 = image_tag board.board_image.thumb.url, class: "m-2"
       = paginate @boards, theme: 'bootstrap-5'
   - else
-    .w-75.border-bottom.position-fixed.top-0.end-0.d-flex.flex-column.bg-white.home-container
-      .h-50
-        h2.ms-4.mt-1
-          | ホーム
-        .d-flex.justify-content-around.mt-auto.mb-0
-          = link_to root_path, class: "pb-2 border-bottom border-info border-4"
-            | おすすめ
+    .w-75.border-bottom.h-25.position-fixed.top-0.end-0.d-flex.flex-column
+      h2.ms-4.mt-4
+        | ホーム
+      .d-flex.justify-content-around.mt-auto.mb-0
+        = link_to root_path, class: "pb-3 border-bottom border-info border-4"
+          | おすすめ
     .tweet-container
-      - @boards.each do |board|
-        .h-auto.d-flex.px-3.border-bottom
-          .mt-3 
-             = image_tag board.user.user_image, class: "user-image__home"
-          .mt-3.ms-3 
-            p 
-              = board.user.nickname
-            p
-              = board.tweet
-            - unless board.board_image.blank?
-              .mt-3
-                = image_tag board.board_image.thumb.url, class: "m-2"
-      = paginate @boards, theme: 'bootstrap-5'

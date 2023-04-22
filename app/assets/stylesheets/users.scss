@@ -4,9 +4,16 @@ li {
 .p-form__container {
 	max-width: 480px;
 }
+.home-container {
+	height: 85px;
+}
 .tweet-container {
-	margin-top: 25vh;
+	margin-top: 15vh;
 	margin-left: 25vw;
+	z-index: -1;
+	.tweet-area {
+		height: 200px;
+	}
 }
 .horizontal-border {
 	display: flex;
@@ -20,4 +27,10 @@ li {
 	flex-grow: 1;
 	height: 1px;
 	background-color: #ccc;
+}
+.user-image__home {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
