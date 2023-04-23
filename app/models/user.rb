@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
 
-  has_many :boards, dependent: :destroy
+  has_many :tweets, dependent: :destroy
   has_many :follower, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy, inverse_of: :user
   has_many :followed, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy, inverse_of: :user
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人

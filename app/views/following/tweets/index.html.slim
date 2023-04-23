@@ -7,33 +7,33 @@
         .d-flex.justify-content-around.mt-auto.mb-0
           = link_to root_path, class: "pb-2"
            | おすすめ
-          = link_to boards_following_path, class: "pb-2 border-bottom border-info border-4" 
+          = link_to following_tweets_path, class: "pb-2 border-bottom border-info border-4" 
             | フォロー中
     .tweet-container.w-100
       .d-flex.tweet-area.border-bottom
         .m-2 
           = image_tag current_user.user_image, class: "user-image__home"
         .w-100 
-          = form_with url: boards_path do |f|
-            = f.text_area :tweet, class: 'form-control', rows: 5, placeholder: 'いまどうしてる？'
+          = form_with url: following_tweets_path do |f|
+            = f.text_area :body, class: 'form-control', rows: 5, placeholder: 'いまどうしてる？'
             .d-flex.justify-content-between.mt-3
-              = f.label :board_image do 
+              = f.label :tweet_image do 
                 i.bi.bi-image-fill.fs-3.text-info.nav-link
-                = f.file_field :board_image, style: 'display: none'
+                = f.file_field :tweet_image, style: 'display: none'
               = f.submit 'ツイートする', class: "btn btn-info"
-      - @boards.each do |board|
+      - @tweets.each do |tweet|
         .h-auto.d-flex.px-3.border-bottom
           .mt-3 
-             = image_tag board.user.user_image, class: "user-image__home"
+             = image_tag tweet.user.user_image, class: "user-image__home"
           .mt-3.ms-3 
             p 
-              = board.user.nickname
+              = tweet.user.nickname
             p
-              = board.tweet
-            - unless board.board_image.blank?
+              = tweet.body
+            - unless tweet.tweet_image.blank?
               .mt-3
-                = image_tag board.board_image.thumb.url, class: "m-2"
-      = paginate @boards, theme: 'bootstrap-5'
+                = image_tag tweet.tweet_image.thumb.url, class: "m-2"
+      = paginate @tweets, theme: 'bootstrap-5'
   - else
     .w-75.border-bottom.h-25.position-fixed.top-0.end-0.d-flex.flex-column
       h2.ms-4.mt-4

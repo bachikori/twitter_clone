@@ -24,7 +24,7 @@ User.create!([
                { id: 7, email: 'test7@example.com', password: 'hhhhhh', nickname: '六郎', uid: SecureRandom.uuid, user_image: 'apple.png',
                  confirmed_at: Time.zone.now }
              ])
-Board.create!([
+Tweet.create!([
                 { tweet: 'おはようございます', user_id: 1 },
                 { tweet: 'おはようございます', user_id: 1 },
                 { tweet: 'こんにちは', user_id: 2 },
