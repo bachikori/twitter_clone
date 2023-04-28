@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
-    if @tweet.save!
+    if @tweet.save
       flash[:notice] = 'ツイートしました'
     else
       flash[:alert] = 'ツイートできませんでした'

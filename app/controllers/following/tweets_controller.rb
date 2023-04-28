@@ -3,13 +3,12 @@
 module Following
   class TweetsController < ApplicationController
     def index
-      follow_user = current_user.following_user
-      @tweets = Tweet.where(user: follow_user).order(created_at: 'desc').page(params[:page])
+      @tweets = Tweet.where(user: current_user.following_user).order(created_at: 'desc').page(params[:page])
     end
 
     def create
       @tweet = current_user.tweets.build(tweet_params)
-      if @tweet.save!
+      if @tweet.save
         flash[:notice] = 'ツイートしました'
       else
         flash[:alert] = 'ツイートできませんでした'
