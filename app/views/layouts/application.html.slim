@@ -9,4 +9,66 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body
-    = yield
+    .d-flex
+      .w-25.vh-100.py-3.border-end.d-flex.justify-content-center.position-fixed.overflow-auto
+        .flex-column
+          - if notice
+            p
+              = notice
+          - if alert
+            p
+              = alert
+          ul.nav.flex-column
+            li.nav-item.pb-5
+              = link_to root_path do
+                i.bi.bi-twitter.fs-2.text-info.nav-link
+            - if user_signed_in?
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-house-door-fill.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | ホーム
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-hash.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | 話題を検索
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-bell-fill.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | 通知
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-envelope-fill.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | メッセージ
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-bookmark-fill.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | ブックマーク
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-person-circle.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | プロフィール
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                  i.bi.bi-three-dots.fs-3.text-info.nav-link
+                  .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                    | もっと見る
+              = link_to new_user_session_path, class: "nav-item" do
+                button.btn.btn-info.btn-wrapper[type="button"]
+                  | ツイートする
+              = link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-item d-flex" do
+                i.bi.bi-person-dash-fill.fs-3.text-info.nav-link
+                .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                  | ログアウト
+            - else
+              = link_to new_user_session_path, class: "nav-item d-flex" do
+                i.bi.bi-person-fill.fs-3.text-info.nav-link
+                .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                  | ログイン
+              = link_to new_user_registration_path, class: "nav-item d-flex" do
+                i.bi.bi-person-plus-fill.fs-3.text-info.nav-link
+                .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
+                  | 新規登録
+          - if user_signed_in?
+            p
+              = current_user.nickname
+              | さん
+      = yield

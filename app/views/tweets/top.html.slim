@@ -1,0 +1,58 @@
+.w-75
+  - if user_signed_in?
+    .w-75.border-bottom.position-fixed.top-0.end-0.d-flex.flex-column.bg-white.home-container
+      .h-50
+        h2.ms-4.mt-1
+          | ホーム
+        .d-flex.justify-content-around.mt-auto.mb-0
+          = link_to root_path, class: "pb-2 border-bottom border-info border-4"
+           | おすすめ
+          = link_to following_tweets_path, class: "pb-2" 
+            | フォロー中
+    .tweet-container.w-100
+      .d-flex.tweet-area.border-bottom
+        .m-2 
+          = image_tag current_user.user_image, class: "user-image__home"
+        .w-100 
+          = form_with url: tweets_path do |f|
+            = f.text_area :body, class: 'form-control', rows: 5, placeholder: 'いまどうしてる？'
+            .d-flex.justify-content-between.mt-3
+              = f.label :tweet_image do 
+                i.bi.bi-image-fill.fs-3.text-info.nav-link
+                = f.file_field :tweet_image, style: 'display: none'
+              = f.submit 'ツイートする', class: "btn btn-info"
+      - @tweets.each do |tweet|
+        .h-auto.d-flex.px-3.border-bottom
+          .mt-3 
+             = image_tag tweet.user.user_image, class: "user-image__home"
+          .mt-3.ms-3 
+            p 
+              = tweet.user.nickname
+            p
+              = tweet.body
+            - unless tweet.tweet_image.blank?
+              .mt-3
+                = image_tag tweet.tweet_image.thumb.url, class: "m-2"
+      = paginate @tweets, theme: 'bootstrap-5'
+  - else
+    .w-75.border-bottom.position-fixed.top-0.end-0.d-flex.flex-column.bg-white.home-container
+      .h-50
+        h2.ms-4.mt-1
+          | ホーム
+        .d-flex.justify-content-around.mt-auto.mb-0
+          = link_to root_path, class: "pb-2 border-bottom border-info border-4"
+            | おすすめ
+    .tweet-container
+      - @tweets.each do |tweet|
+        .h-auto.d-flex.px-3.border-bottom
+          .mt-3 
+             = image_tag tweet.user.user_image, class: "user-image__home"
+          .mt-3.ms-3 
+            p 
+              = tweet.user.nickname
+            p
+              = tweet.body
+            - unless tweet.tweet_image.blank?
+              .mt-3
+                = image_tag tweet.tweet_image.thumb.url, class: "m-2"
+      = paginate @tweets, theme: 'bootstrap-5'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Boards', type: :request do
+RSpec.describe 'Tweets', type: :request do
   describe 'GET /top' do
     it 'returns http success' do
       get '/'
