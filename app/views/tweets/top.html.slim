@@ -12,7 +12,8 @@
     .tweet-container.w-100
       .d-flex.tweet-area.border-bottom
         .m-2 
-          = image_tag current_user.user_image, class: "user-image__home"
+          = link_to user_path(current_user.id) do
+            = image_tag current_user.user_image, class: "user-image__home"
         .w-100 
           = form_with url: tweets_path do |f|
             = f.text_area :body, class: 'form-control', rows: 5, placeholder: 'いまどうしてる？'

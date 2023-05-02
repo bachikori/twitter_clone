@@ -12,5 +12,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations'
   }
+  resources :users, shallow: true do
+    resources :comments
+    resources :favorites
+    resources :retweets
+  end
   resources :tasks
 end
