@@ -43,7 +43,7 @@ html
                   i.bi.bi-bookmark-fill.fs-3.text-info.nav-link
                   .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
                     | ブックマーク
-              = link_to new_user_session_path, class: "nav-item d-flex" do
+              = link_to user_path(current_user.id), class: "nav-item d-flex" do
                   i.bi.bi-person-circle.fs-3.text-info.nav-link
                   .py-8.ps-0.align-items-center.text-dec.d-none.d-sm-flex
                     | プロフィール
