@@ -10,10 +10,4 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     root_path
   end
-
-  def authenticate_user
-    return unless current_user.nil?
-
-    redirect_to new_user_session_path
-  end
 end
