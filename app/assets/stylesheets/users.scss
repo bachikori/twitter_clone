@@ -7,6 +7,30 @@ li {
 .home-container {
 	height: 85px;
 }
+.user-container {
+	margin-left: 25%;
+}
+.user-edit-container {
+	height: 500px;
+	.btn-container {
+		width: 120px;
+		margin-left: auto;
+	}
+	.user-info {
+		opacity: 0.5;
+		.link-text {
+			color: var(--bs-link-color);
+			opacity: 1;
+		}
+		.link-text:hover {
+			opacity: 1;
+			color: var(--bs-link-color);
+		}
+	}
+}
+.header-image-container {
+	height: 200px;
+}
 .tweet-container {
 	margin-top: 15vh;
 	margin-left: 25vw;
@@ -33,4 +57,13 @@ li {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
+}
+.user-image__show {
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	position: absolute;
+	top: 125px;
+	left: 25px;
 }

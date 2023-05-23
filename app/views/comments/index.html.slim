@@ -1,0 +1,24 @@
+.w-75.user-container
+  - if user_signed_in?
+		.w-100.border-bottom.position-relative.top-0.end-0.d-flex.flex-column.bg-white.user-edit-container
+			= render partial: 'shared/info'
+			.d-flex.justify-content-around.mt-auto.mb-0
+				= link_to user_path(current_user.id), class: "pb-2"
+					| ツイート
+				= link_to user_comments_path(user_id: current_user.id), class: "pb-2 border-bottom border-info border-4" 
+					| コメント
+				= link_to user_retweets_path(user_id: current_user.id), class: "pb-2" 
+					| リツイート
+				= link_to user_favorites_path(user_id: current_user.id), class: "pb-2" 
+					| いいね
+		div
+			- @tweets.each do |tweet|
+				.h-auto.d-flex.px-3.border-bottom
+					.mt-3 
+						= image_tag tweet.user.user_image, class: "user-image__home"
+					.mt-3.ms-3
+						p
+							= tweet.user.nickname
+						p
+							= tweet.body
+			= paginate @tweets, theme: 'bootstrap-5'
