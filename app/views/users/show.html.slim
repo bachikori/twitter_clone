@@ -15,7 +15,7 @@
 			- @tweets.each do |tweet|
 				.h-auto.d-flex.px-3.border-bottom
 					.mt-3 
-						= image_tag tweet.user.user_image, class: "user-image__home"
+						= image_tag tweet.user.user_image.url, class: "user-image__home"
 					.mt-3.ms-3
 						p
 							= tweet.user.nickname

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_040702) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_053354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,9 +93,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_040702) do
     t.string "tel_number"
     t.string "uid", default: "", null: false
     t.string "provider", default: "", null: false
-    t.string "user_image", default: "apple.png", null: false
+    t.string "user_image"
     t.string "profile", default: ""
-    t.string "header_image", default: "baroon.jpg", null: false
+    t.string "header_image"
     t.string "place", default: ""
     t.string "link", default: ""
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

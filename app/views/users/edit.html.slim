@@ -1,0 +1,39 @@
+.edit-form
+	.card.my-5.edit-form__container.p-3.text-align-center
+		h2.mb-5
+			| プロフィール編集
+			- if notice
+				p
+					= notice
+			- if alert
+				p
+					= alert
+		= form_with model: @user, local: true do |f|
+			.form-group 
+				= f.label :nickname, 'ニックネーム', class: 'form-label'
+				= f.text_field :nickname, class: 'form-control', value: current_user.nickname
+			.form-group 
+				= f.label :profile, 'プロフィール文', class: 'form-label'
+				= f.text_area :profile, class: 'form-control', row: 3, value: current_user.profile
+			.form-group 
+				= f.label :place, '場所', class: 'form-label'
+				= f.text_field :place, class: 'form-control', value: current_user.place
+			.form-group 
+				= f.label :link, 'リンク', class: 'form-label'
+				= f.text_field :link, class: 'form-control', value: current_user.link
+			.form-group.mt-2 
+				= f.label :birthday, '誕生日', class: 'form-label'
+				= f.date_select :birthday, selected: current_user.birthday
+			.form-group.mt-2 
+				= f.label :header_image do 
+					div 
+					 | ヘッダー画像
+					= f.file_field :header_image
+			.form-group.mt-2 
+				= f.label :user_image do 
+					div 
+					 | プロフィール画像
+					= f.file_field :user_image
+			.my-4 
+				= f.submit '保存する', class: "w-100 btn btn-primary btn-lg"
+			

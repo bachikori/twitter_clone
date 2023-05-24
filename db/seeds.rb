@@ -9,21 +9,21 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 User.create!([
-               { id: 1001, email: 'test1@example.com', password: 'aaaaaa', nickname: '太郎', uid: SecureRandom.uuid, user_image: 'apple.png',
-                 confirmed_at: Time.zone.now, birthday: '1999-04-15', header_image: 'baroon.jpg', place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/',
+               { id: 1001, email: 'test1@example.com', password: 'aaaaaa', nickname: '太郎', uid: SecureRandom.uuid,
+                 confirmed_at: Time.zone.now, birthday: '1999-04-15', place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/',
                  profile: 'こんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちは' },
-               { id: 1002, email: 'test2@example.com', password: 'bbbbbb', nickname: '一郎', uid: SecureRandom.uuid, user_image: 'apple.png',
-                 confirmed_at: Time.zone.now, birthday: '1999-04-15', header_image: 'baroon.jpg' },
-               { id: 1003, email: 'test3@example.com', password: 'cccccc', nickname: '二郎', uid: SecureRandom.uuid, user_image: 'apple.png',
-                 confirmed_at: Time.zone.now, header_image: 'baroon.jpg', place: '東京都' },
-               { id: 1004, email: 'test4@example.com', password: 'dddddd', nickname: '三郎', uid: SecureRandom.uuid, user_image: 'apple.png',
-                 confirmed_at: Time.zone.now, header_image: 'baroon.jpg', place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/' },
-               { id: 1005, email: 'test5@example.com', password: 'eeeeee', nickname: '四郎', uid: SecureRandom.uuid, user_image: 'apple.png',
-                 confirmed_at: Time.zone.now, header_image: 'baroon.jpg', place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/',
+               { id: 1002, email: 'test2@example.com', password: 'bbbbbb', nickname: '一郎', uid: SecureRandom.uuid,
+                 confirmed_at: Time.zone.now, birthday: '1999-04-15' },
+               { id: 1003, email: 'test3@example.com', password: 'cccccc', nickname: '二郎', uid: SecureRandom.uuid,
+                 confirmed_at: Time.zone.now, place: '東京都' },
+               { id: 1004, email: 'test4@example.com', password: 'dddddd', nickname: '三郎', uid: SecureRandom.uuid,
+                 confirmed_at: Time.zone.now, place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/' },
+               { id: 1005, email: 'test5@example.com', password: 'eeeeee', nickname: '四郎', uid: SecureRandom.uuid,
+                 confirmed_at: Time.zone.now, place: '東京都', link: 'https://tweetcloneabc.herokuapp.com/',
                  profile: 'こんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちは' },
-               { id: 1006, email: 'test6@example.com', password: 'ffffff', nickname: '五郎', uid: SecureRandom.uuid, user_image: 'apple.png',
+               { id: 1006, email: 'test6@example.com', password: 'ffffff', nickname: '五郎', uid: SecureRandom.uuid,
                  confirmed_at: Time.zone.now, profile: 'こんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちはこんにちは' },
-               { id: 1007, email: 'test7@example.com', password: 'gggggg', nickname: '六郎', uid: SecureRandom.uuid, user_image: 'apple.png',
+               { id: 1007, email: 'test7@example.com', password: 'gggggg', nickname: '六郎', uid: SecureRandom.uuid,
                  confirmed_at: Time.zone.now }
              ])
 Tweet.create!([

@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :retweets, dependent: :destroy
 
+  mount_uploader :user_image, UserImageUploader
+  mount_uploader :header_image, HeaderImageUploader
+
   def self.find_for_github_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.nickname = auth.info.nickname
