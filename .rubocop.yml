@@ -26,5 +26,3 @@ Metrics/MethodLength:
   Enabled: true
   Max: 25
 
-Rails/ReversibleMigration:
-  Enabled: false

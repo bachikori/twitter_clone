@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   validates :email, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
+  validates :link, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
 
   has_many :tweets, dependent: :destroy
   has_many :follower, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy, inverse_of: :user

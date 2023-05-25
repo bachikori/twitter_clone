@@ -2,12 +2,11 @@
 	.card.my-5.edit-form__container.p-3.text-align-center
 		h2.mb-5
 			| プロフィール編集
-			- if notice
-				p
-					= notice
-			- if alert
-				p
-					= alert
+		- if @user.errors.any?
+			.alert.alert-danger
+				ul
+					- @user.errors.full_messages.each do |message|
+						li = message
 		= form_with model: @user, local: true do |f|
 			.form-group 
 				= f.label :nickname, 'ニックネーム', class: 'form-label'
@@ -23,7 +22,7 @@
 				= f.text_field :link, class: 'form-control', value: current_user.link
 			.form-group.mt-2 
 				= f.label :birthday, '誕生日', class: 'form-label'
-				= f.date_select :birthday, selected: current_user.birthday
+				= f.date_select :birthday, {start_year: 1900, end_year: 2023}, selected: current_user.birthday
 			.form-group.mt-2 
 				= f.label :header_image do 
 					div 
