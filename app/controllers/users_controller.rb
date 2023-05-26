@@ -7,14 +7,11 @@ class UsersController < ApplicationController
     @tweets = current_user.tweets.all.order('created_at DESC').page(params[:page])
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
+    if current_user.update(user_params)
+      redirect_to user_path(current_user.id)
     else
       render 'users/edit', status: :unprocessable_entity
     end

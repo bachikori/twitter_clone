@@ -2,12 +2,12 @@
 	.card.my-5.edit-form__container.p-3.text-align-center
 		h2.mb-5
 			| プロフィール編集
-		- if @user.errors.any?
+		- if current_user.errors.any?
 			.alert.alert-danger
 				ul
-					- @user.errors.full_messages.each do |message|
+					- current_user.errors.full_messages.each do |message|
 						li = message
-		= form_with model: @user, local: true do |f|
+		= form_with model: current_user, local: true do |f|
 			.form-group 
 				= f.label :nickname, 'ニックネーム', class: 'form-label'
 				= f.text_field :nickname, class: 'form-control', value: current_user.nickname
