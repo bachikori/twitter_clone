@@ -7,4 +7,6 @@ class Tweet < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :retweets, dependent: :destroy
   belongs_to :user
+
+  validates :body, length: { maximum: 140 }
 end

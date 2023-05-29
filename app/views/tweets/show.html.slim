@@ -1,0 +1,32 @@
+.w-75.user-container
+	.w-100.border-bottom.position-relative.top-0.end-0.d-flex.flex-column.bg-white
+		.h-auto.d-flex.px-3
+			.mt-3 
+				= image_tag @tweet.user.user_image.url, class: "user-image__home"
+			.mt-3.ms-3
+				p
+					= @tweet.user.nickname
+		.px-3.my-5
+			= @tweet.body
+		- unless @tweet.tweet_image.blank?
+			.mt-3
+				= image_tag @tweet.tweet_image.thumb.url, class: "m-2"
+	.d-flex.border-bottom.justify-content-around.align-items-center.tweet-detail-icon-container
+		i.bi.bi-chat.fs-3.text-info.nav-link 
+		i.bi.bi-arrow-left-right.fs-3.text-info.nav-link 
+		i.bi.bi-heart.fs-3.text-info.nav-link 
+	.d-flex.border-bottom.tweet-detail-reply-container.mt-2
+ 		= image_tag current_user.user_image.url, class: "user-image__home m-2"
+		.w-100 
+			= form_with url: tweet_comments_path(@tweet.id) do |f|
+				= f.text_area :comment, class: 'form-control', rows: 3, placeholder: '返信する', maxlength: "140"
+				= f.submit '返信', class: "btn btn-info ms-auto mt-2"
+	- @tweet.comments&.each do |comment|
+		.h-auto.d-flex.p-3.border-bottom
+			= image_tag comment.user.user_image.url, class: "user-image__home"
+			.m-3
+				p 
+					= comment.user.nickname
+				p
+					= comment.comment
+			

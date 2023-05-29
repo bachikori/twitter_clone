@@ -19,6 +19,12 @@
 					.mt-3.ms-3
 						p
 							= tweet.user.nickname
-						p
-							= tweet.body
+						- tweet.comments.each do |comment|
+							p.small
+								= comment.tweet.body
+							- unless tweet.tweet_image.blank?
+								.mt-3
+									= image_tag tweet.tweet_image.thumb.url, class: "m-2"
+							p
+								= comment.comment
 			= paginate @tweets, theme: 'bootstrap-5'
