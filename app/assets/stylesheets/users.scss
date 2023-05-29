@@ -67,3 +67,12 @@ li {
 	top: 125px;
 	left: 25px;
 }
+.edit-form {
+	margin-left: 25vw;
+	width: 100%;
+	text-align: -webkit-center;
+	.edit-form__container {
+		width: 500px;
+		text-align: left;
+	}
+}

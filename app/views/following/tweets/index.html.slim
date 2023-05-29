@@ -13,7 +13,7 @@
       .d-flex.tweet-area.border-bottom
         .m-2 
           = link_to user_path(current_user.id) do
-            = image_tag current_user.user_image, class: "user-image__home"
+            = image_tag current_user.user_image.url, class: "user-image__home"
         .w-100 
           = form_with url: following_tweets_path do |f|
             = f.text_area :body, class: 'form-control', rows: 5, placeholder: 'いまどうしてる？'
@@ -25,7 +25,7 @@
       - @tweets.each do |tweet|
         .h-auto.d-flex.px-3.border-bottom
           .mt-3 
-             = image_tag tweet.user.user_image, class: "user-image__home"
+             = image_tag tweet.user.user_image.url, class: "user-image__home"
           .mt-3.ms-3 
             p 
               = tweet.user.nickname
