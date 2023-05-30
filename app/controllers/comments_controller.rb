@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    tweet = Tweet.find(params[:tweet_id])
     comment = current_user.comments.build(comment_params)
+    tweet = Tweet.find(params[:tweet_id])
     comment.tweet_id = tweet.id
     if comment.save
       flash[:notice] = 'コメントしました'
