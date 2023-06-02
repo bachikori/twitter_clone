@@ -6,4 +6,18 @@ class FavoritesController < ApplicationController
   def index
     @tweets = Tweet.joins(:favorites).where(favorites: { user_id: current_user.id }).distinct.order('created_at DESC').page(params[:page])
   end
+
+  def create
+    tweet = Tweet.find(params[:tweet_id])
+    favorite = current_user.favorites.new(tweet_id: tweet.id)
+    favorite.save!
+    redirect_to request.referer
+  end
+
+  def destroy
+    tweet = Tweet.find(params[:tweet_id])
+    favorite = current_user.favorites.find_by(tweet_id: tweet.id)
+    favorite.destroy!
+    redirect_to request.referer
+  end
 end
