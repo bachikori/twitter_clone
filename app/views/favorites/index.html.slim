@@ -12,13 +12,5 @@
 				= link_to user_favorites_path(user_id: current_user.id), class: "pb-2 border-bottom border-info border-4" 
 					| いいね
 		div
-			- @tweets.each do |tweet|
-				.h-auto.d-flex.px-3.border-bottom
-					.mt-3 
-						= image_tag tweet.user.user_image.url, class: "user-image__home"
-					.mt-3.ms-3
-						p
-							= tweet.user.nickname
-						p
-							= tweet.body
+			= render partial: 'shared/tweet_list'
 			= paginate @tweets, theme: 'bootstrap-5'

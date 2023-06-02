@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :following do
     resources :tweets, only: %i[index create]
   end
-  resources :tweets, only: %i[top create]
+  resources :tweets, only: %i[top create show] do
+    resources :comments, only: %i[create]
+  end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   devise_for :users, controllers: {
     sessions: 'users/sessions',
