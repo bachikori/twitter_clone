@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :tweets, only: %i[top create show] do
     resources :comments, only: %i[create]
     resource :favorites, only: %i[create destroy]
+    resource :retweets, only: %i[create destroy]
   end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   devise_for :users, controllers: {
