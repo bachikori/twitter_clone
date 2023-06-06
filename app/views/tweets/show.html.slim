@@ -12,9 +12,18 @@
 			.mt-3
 				= image_tag @tweet.tweet_image.thumb.url, class: "m-2"
 	.d-flex.border-bottom.justify-content-around.align-items-center.tweet-detail-icon-container
-		i.bi.bi-chat.fs-3.text-info.nav-link 
-		i.bi.bi-arrow-left-right.fs-3.text-info.nav-link 
-		i.bi.bi-heart.fs-3.text-info.nav-link 
+		- if @tweet.favorited_by?(current_user)
+			i.bi.bi-chat.fs-5.text-info.nav-link 
+			i.bi.bi-arrow-left-right.fs-5.text-info.nav-link 
+			= link_to tweet_favorites_path(@tweet.id), data: { turbo_method: :delete }, class: 'd-flex' do
+				i.bi.bi-heart-fill.fs-5.text-info.nav-link
+				= @tweet.favorites.count
+		- else 
+			i.bi.bi-chat.fs-5.text-info.nav-link 
+			i.bi.bi-arrow-left-right.fs-5.text-info.nav-link 
+			= link_to tweet_favorites_path(@tweet.id), data: { turbo_method: :post }, class: 'd-flex' do
+				i.bi.bi-heart.fs-5.text-info.nav-link
+				= @tweet.favorites.count
 	.d-flex.border-bottom.tweet-detail-reply-container.mt-2
  		= image_tag current_user.user_image.url, class: "user-image__home m-2"
 		.w-100 

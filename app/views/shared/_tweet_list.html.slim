@@ -2,7 +2,7 @@
 	.h-auto.d-flex.px-3.border-bottom
 		.mt-3 
 			= image_tag tweet.user.user_image.url, class: "user-image__home"
-		.mt-3.ms-3
+		.mt-3.ms-3.w-100
 			= link_to tweet_path(tweet.id) do
 				p
 					= tweet.user.nickname
@@ -11,3 +11,16 @@
 				- unless tweet.tweet_image.blank?
 					.mt-3
 						= image_tag tweet.tweet_image.thumb.url, class: "m-2"
+			.d-flex.border-bottom.justify-content-around.align-items-center.tweet-detail-icon-container
+				- if tweet.favorited_by?(current_user)
+					i.bi.bi-chat.fs-5.text-info.nav-link 
+					i.bi.bi-arrow-left-right.fs-5.text-info.nav-link 
+					= link_to tweet_favorites_path(tweet_id: tweet.id), data: { turbo_method: :delete }, class: 'd-flex' do
+						i.bi.bi-heart-fill.fs-5.text-info.nav-link
+						= tweet.favorites.count
+				- else 
+					i.bi.bi-chat.fs-5.text-info.nav-link 
+					i.bi.bi-arrow-left-right.fs-5.text-info.nav-link 
+					= link_to tweet_favorites_path(tweet_id: tweet.id), data: { turbo_method: :post }, class: 'd-flex' do
+						i.bi.bi-heart.fs-5.text-info.nav-link
+						= tweet.favorites.count
