@@ -12,10 +12,10 @@ class User < ApplicationRecord
   validates :link, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }, allow_blank: true
 
   has_many :tweets, dependent: :destroy
-  has_many :follower, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy, inverse_of: :user
-  has_many :followed, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy, inverse_of: :user
-  has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
-  has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
+  has_many :follower_relationships, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy, inverse_of: :follower
+  has_many :followed_relationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy, inverse_of: :followed
+  has_many :following_users, through: :follower_relationships, source: :followed
+  has_many :follower_users, through: :followed_relationships, source: :follower
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :retweets, dependent: :destroy
@@ -36,5 +36,17 @@ class User < ApplicationRecord
 
   def self.create_unique_string
     SecureRandom.uuid
+  end
+
+  def follow(user_id)
+    follower_relationships.create!(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    follower_relationships.find_by!(followed_id: user_id).destroy!
+  end
+
+  def following?(user)
+    following_users.include?(user)
   end
 end

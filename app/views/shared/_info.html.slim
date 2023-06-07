@@ -1,25 +1,28 @@
-= image_tag current_user.header_image.url, class: "header-image-container"
-= image_tag current_user.user_image.url, class: "user-image__show"
+= image_tag @user.header_image.url, class: "header-image-container"
+= image_tag @user.user_image.url, class: "user-image__show"
 .d-flex 
-	= link_to edit_user_path(current_user.id), class: "btn-container mt-2" do
-		button.btn.btn-info.w-100
-			| 編集
+	- if current_user.id == @user.id
+		= link_to edit_user_path(@user.id), class: "btn-container mt-2" do
+			button.btn.btn-info.w-100
+				| 編集
+	- else
+		div.mt-5
 p.mt-5.ms-4.fs-3
-	= current_user.nickname
+	= @user.nickname
 div.mx-2 
-	= current_user.profile
+	= @user.profile
 .d-flex.mt-2.user-info
 	span.mx-2
-		- unless current_user.place.empty? 
+		- unless @user.place.empty? 
 			i.bi.bi-geo-alt-fill
-			= current_user.place 
+			= @user.place 
 	span.mx-2
-		- unless current_user.link.empty?
-			= link_to "#{current_user.link}", class: "d-flex" do 
+		- unless @user.link.empty?
+			= link_to "#{@user.link}", class: "d-flex" do 
 				i.bi.bi-link-45deg
 				div.link-text 
-					= URI.parse(current_user.link).host
+					= URI.parse(@user.link).host
 	span.mx-2 
-		- if current_user.birthday
+		- if @user.birthday
 			i.bi.bi-balloon-fill
-			= current_user.birthday.strftime("%Y年%m月%d日").to_s
+			= @user.birthday.strftime("%Y年%m月%d日").to_s

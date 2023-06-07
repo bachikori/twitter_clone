@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :favorites
     resources :retweets
+    resource :relationships, only: %i[create destroy]
   end
   resources :tasks
 end

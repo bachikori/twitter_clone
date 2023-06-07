@@ -1,7 +1,8 @@
 - @tweets.each do |tweet|
 	.h-auto.d-flex.px-3.border-bottom
 		.mt-3 
-			= image_tag tweet.user.user_image.url, class: "user-image__home"
+			= link_to user_path(tweet.user.id) do
+				= image_tag tweet.user.user_image.url, class: "user-image__home"
 		.mt-3.ms-3.w-100
 			= link_to tweet_path(tweet.id) do
 				p

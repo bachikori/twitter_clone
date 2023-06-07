@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @tweets = current_user.tweets.all.order('created_at DESC').page(params[:page])
+    @user = User.find(params[:id])
+    @tweets = @user.tweets.all.order('created_at DESC').page(params[:page])
   end
 
   def edit; end
