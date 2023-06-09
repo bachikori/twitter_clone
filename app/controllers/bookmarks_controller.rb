@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BookmarksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @tweets = Tweet.joins(:bookmarks).where(bookmarks: { user_id: current_user.id }).distinct.order('created_at DESC').page(params[:page])
   end
