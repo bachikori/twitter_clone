@@ -45,6 +45,12 @@
 			= link_to tweet_favorites_path(tweet_id: @tweet.id), data: { turbo_method: :post }, class: 'd-flex' do
 				i.bi.bi-heart.fs-5.text-info.nav-link
 				= @tweet.favorites.count
+		- if @tweet.bookmarked_by?(current_user)
+			= link_to tweet_bookmarks_path(tweet_id: @tweet.id), data: { turbo_method: :delete }, class: 'd-flex' do
+				i.bi.bi-bookmark-fill.fs-5.text-info.nav-link
+		- else 
+			= link_to tweet_bookmarks_path(tweet_id: @tweet.id), data: { turbo_method: :post }, class: 'd-flex' do
+				i.bi.bi-bookmark.fs-5.text-info.nav-link
 	.d-flex.border-bottom.tweet-detail-reply-container.mt-2
  		= image_tag @user.user_image.url, class: "user-image__home m-2"
 		.w-100 

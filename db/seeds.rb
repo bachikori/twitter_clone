@@ -85,3 +85,13 @@ Retweet.create!([
                   { user_id: 1006, tweet_id: 7 },
                   { user_id: 1007, tweet_id: 8 }
                 ])
+Bookmark.create!([
+                   { user_id: 1001, tweet_id: 9 },
+                   { user_id: 1001, tweet_id: 12 },
+                   { user_id: 1002, tweet_id: 3 },
+                   { user_id: 1003, tweet_id: 4 },
+                   { user_id: 1004, tweet_id: 5 },
+                   { user_id: 1005, tweet_id: 6 },
+                   { user_id: 1006, tweet_id: 7 },
+                   { user_id: 1007, tweet_id: 8 }
+                 ])
