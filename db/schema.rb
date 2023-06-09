@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_053354) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_005609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tweet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_bookmarks_on_tweet_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -105,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_053354) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "tweets"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "tweets"
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "tweets"

@@ -1,0 +1,5 @@
+.w-75.user-container
+  - if user_signed_in?
+		div
+			= render partial: 'shared/tweet_list'
+			= paginate @tweets, theme: 'bootstrap-5'
