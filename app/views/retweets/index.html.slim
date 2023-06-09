@@ -3,13 +3,13 @@
 		.w-100.border-bottom.position-relative.top-0.end-0.d-flex.flex-column.bg-white.user-edit-container
 			= render partial: 'shared/info'
 			.d-flex.justify-content-around.mt-auto.mb-0
-				= link_to user_path(current_user.id), class: "pb-2"
+				= link_to user_path(@user.id), class: "pb-2"
 					| ツイート
-				= link_to user_comments_path(user_id: current_user.id), class: "pb-2" 
+				= link_to user_comments_path(user_id: @user.id), class: "pb-2" 
 					| コメント
-				= link_to user_retweets_path(user_id: current_user.id), class: "pb-2 border-bottom border-info border-4" 
+				= link_to user_retweets_path(user_id: @user.id), class: "pb-2 border-bottom border-info border-4" 
 					| リツイート
-				= link_to user_favorites_path(user_id: current_user.id), class: "pb-2" 
+				= link_to user_favorites_path(user_id: @user.id), class: "pb-2" 
 					| いいね
 		div
 			= render partial: 'shared/tweet_list'

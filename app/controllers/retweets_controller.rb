@@ -4,7 +4,8 @@ class RetweetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @tweets = Tweet.joins(:retweets).where(retweets: { user_id: current_user.id }).distinct.order('created_at DESC').page(params[:page])
+    @user = User.find(params[:user_id])
+    @tweets = Tweet.joins(:retweets).where(retweets: { user_id: @user.id }).distinct.order('created_at DESC').page(params[:page])
   end
 
   def create

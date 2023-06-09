@@ -1,11 +1,27 @@
 .w-75.user-container
 	.w-100.border-bottom.position-relative.top-0.end-0.d-flex.flex-column.bg-white
-		.h-auto.d-flex.px-3
-			.mt-3 
-				= image_tag @tweet.user.user_image.url, class: "user-image__home"
-			.mt-3.ms-3
-				p
-					= @tweet.user.nickname
+		.h-auto.d-flex.px-3.justify-content-between
+			.d-flex 
+				.mt-3 
+					= link_to user_path(@tweet.user.id) do
+						= image_tag @tweet.user.user_image.url, class: "user-image__home"
+				.mt-3.ms-3
+					p
+						= @tweet.user.nickname
+			- if user_signed_in?
+				- if current_user != @user
+					.dropdown.mt-3 
+						button#dropdownMenuButton1 type="button" data-bs-toggle="dropdown" aria-expanded="false"
+							i.bi.bi-three-dots.fs-5.text-green.nav-link 
+						ul.dropdown-menu#dropdownMenuButton1
+							- if current_user.following?(@user)
+								= link_to user_relationships_path(@user.id), data: { turbo_method: :delete }, class: 'd-flex' do
+									.dropdown-item 
+										| フォロー解除
+							- else
+								= link_to user_relationships_path(@user.id), data: { turbo_method: :post }, class: 'd-flex' do
+									.dropdown-item 
+										| フォローする
 		.px-3.my-5
 			= @tweet.body
 		- unless @tweet.tweet_image.blank?
@@ -30,7 +46,7 @@
 				i.bi.bi-heart.fs-5.text-info.nav-link
 				= @tweet.favorites.count
 	.d-flex.border-bottom.tweet-detail-reply-container.mt-2
- 		= image_tag current_user.user_image.url, class: "user-image__home m-2"
+ 		= image_tag @user.user_image.url, class: "user-image__home m-2"
 		.w-100 
 			= form_with url: tweet_comments_path(@tweet.id) do |f|
 				= f.text_area :comment, class: 'form-control', rows: 3, placeholder: '返信する', maxlength: "140"
