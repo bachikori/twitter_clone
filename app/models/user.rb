@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :retweets, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   mount_uploader :user_image, UserImageUploader
   mount_uploader :header_image, HeaderImageUploader
